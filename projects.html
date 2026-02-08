@@ -1,0 +1,699 @@
+<!DOCTYPE html><html lang="he" dir="rtl"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>פרויקטים - ירון קוטיק אדריכלים</title>
+  <meta name="description" content="Projects - ירון קוטיק אדריכלים provides professional אדריכלות ועיצוב services. Specializing in אדריכלות.">
+  <meta name="keywords" content="אדריכלות, אדריכל לבתים פרטיים מעוצבים, משרד אדריכלים יוקרתי ישראל, תכנון אדריכלי לפרויקטים מסחריים">
+  <meta name="robots" content="index, follow">
+  
+  <meta property="og:title" content="פרויקטים - ירון קוטיק אדריכלים">
+  <meta property="og:description" content="Projects - ירון קוטיק אדריכלים provides professional אדריכלות ועיצוב services. Specializing in אדריכלות.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="he_IL">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="פרויקטים - ירון קוטיק אדריכלים">
+  <meta name="twitter:description" content="Projects - ירון קוטיק אדריכלים provides professional אדריכלות ועיצוב services. Specializing in אדריכלות.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.umd.js"></script>
+    <!-- Mickidum Accessibility Toolbar -->
+    <script src="https://cdn.jsdelivr.net/gh/mickidum/acc_toolbar/acctoolbar/acctoolbar.min.js"></script>
+<!-- Zappy Analytics -->
+<script>
+(function() {
+  'use strict';
+  
+  // Configuration
+  var config = {
+    websiteId: '3a9b02df-f328-4c71-b541-6636aa17f98d',
+    apiUrl: 'https://api.zappy5.com/api/analytics/track',
+    sessionDuration: 30 * 60 * 1000, // 30 minutes
+    visitorDuration: 30 * 24 * 60 * 60 * 1000, // 30 days
+    trackPageViews: true,
+    trackClicks: true,
+    trackFormSubmissions: true
+  };
+  
+  // Generate or retrieve persistent visitor ID (30 days)
+  function getVisitorId() {
+    var visitorKey = 'zappy_visitor_' + config.websiteId;
+    var visitor = null;
+    
+    try {
+      visitor = localStorage.getItem(visitorKey);
+      if (visitor) {
+        var visitorData = JSON.parse(visitor);
+        var now = Date.now();
+        
+        // Check if visitor ID is still valid (30 days)
+        if (now - visitorData.created < config.visitorDuration) {
+          // Update last seen timestamp
+          visitorData.lastSeen = now;
+          localStorage.setItem(visitorKey, JSON.stringify(visitorData));
+          return visitorData.id;
+        }
+      }
+    } catch (e) {
+      console.warn('Zappy Analytics: LocalStorage not available');
+    }
+    
+    // Generate new visitor ID
+    var newVisitorId = 'zv_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    try {
+      localStorage.setItem(visitorKey, JSON.stringify({
+        id: newVisitorId,
+        created: Date.now(),
+        lastSeen: Date.now()
+      }));
+    } catch (e) {
+      // Continue without local storage
+    }
+    
+    return newVisitorId;
+  }
+  
+  // Generate or retrieve session ID (30 minutes)
+  function getSessionId() {
+    var sessionKey = 'zappy_session_' + config.websiteId;
+    var session = null;
+    
+    try {
+      session = sessionStorage.getItem(sessionKey);
+      if (session) {
+        var sessionData = JSON.parse(session);
+        var now = Date.now();
+        
+        // Check if session is still valid
+        if (now - sessionData.timestamp < config.sessionDuration) {
+          // Update timestamp
+          sessionData.timestamp = now;
+          sessionStorage.setItem(sessionKey, JSON.stringify(sessionData));
+          return sessionData.id;
+        }
+      }
+    } catch (e) {
+      console.warn('Zappy Analytics: SessionStorage not available');
+    }
+    
+    // Generate new session ID
+    var newSessionId = 'zs_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    try {
+      sessionStorage.setItem(sessionKey, JSON.stringify({
+        id: newSessionId,
+        timestamp: Date.now()
+      }));
+    } catch (e) {
+      // Continue without session storage
+    }
+    
+    return newSessionId;
+  }
+  
+  var visitorId = getVisitorId();
+  var sessionId = getSessionId();
+  
+  // Track an event
+  function trackEvent(eventType, data) {
+    data = data || {};
+    
+    var eventData = {
+      website_id: config.websiteId,
+      event_type: eventType,
+      page_path: window.location.pathname,
+      referrer: document.referrer || 'direct',
+      visitor_id: visitorId,
+      session_id: sessionId,
+      metadata: data
+    };
+    
+    // Use sendBeacon if available (better for page unload events)
+    if (navigator.sendBeacon) {
+      var blob = new Blob([JSON.stringify(eventData)], { type: 'application/json' });
+      navigator.sendBeacon(config.apiUrl, blob);
+    } else {
+      // Fallback to fetch
+      fetch(config.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(eventData),
+        keepalive: true
+      }).catch(function(error) {
+        console.warn('Zappy Analytics: Failed to track event', error);
+      });
+    }
+  }
+  
+  // Track page view
+  if (config.trackPageViews) {
+    trackEvent('pageview', {
+      title: document.title,
+      url: window.location.href
+    });
+  }
+  
+  // Track clicks on important elements
+  if (config.trackClicks) {
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      
+      // Track button clicks (counted as actions)
+      if (target.tagName === 'BUTTON' || target.closest('button')) {
+        var button = target.tagName === 'BUTTON' ? target : target.closest('button');
+        trackEvent('click', {
+          element: 'button',
+          text: button.textContent.trim().substring(0, 100),
+          id: button.id || null,
+          class: button.className || null
+        });
+      }
+      
+      // Track link clicks (navigation - not counted as actions)
+      else if (target.tagName === 'A' || target.closest('a')) {
+        var link = target.tagName === 'A' ? target : target.closest('a');
+        trackEvent('navigation', {
+          element: 'link',
+          text: link.textContent.trim().substring(0, 100),
+          href: link.href,
+          external: link.hostname !== window.location.hostname
+        });
+      }
+    }, true);
+  }
+  
+  // Track form submissions
+  if (config.trackFormSubmissions) {
+    document.addEventListener('submit', function(e) {
+      var form = e.target;
+      
+      trackEvent('form_submit', {
+        form_id: form.id || null,
+        form_name: form.name || null,
+        form_action: form.action || null,
+        form_method: form.method || 'GET'
+      });
+    }, true);
+  }
+  
+  // Track time on page (send on page unload)
+  var pageLoadTime = Date.now();
+  
+  window.addEventListener('beforeunload', function() {
+    var timeOnPage = Math.floor((Date.now() - pageLoadTime) / 1000); // in seconds
+    
+    trackEvent('page_unload', {
+      time_on_page: timeOnPage,
+      page_path: window.location.pathname
+    });
+  });
+  
+  // Expose tracking function globally for custom events
+  window.zappyAnalytics = {
+    track: trackEvent,
+    getVisitorId: function() { return visitorId; },
+    getSessionId: function() { return sessionId; }
+  };
+  
+})();
+</script>
+<!-- End Zappy Analytics -->
+
+    <style id="zappy-dropdown-submenu-styles">
+      /* ========== DESKTOP DROPDOWN SUBMENU STYLES ========== */
+      /* Base styles for dropdown submenus - parent must be positioned */
+      .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { position: relative; }
+      /* Submenu base - hidden by default */
+      .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { display: block !important; position: absolute !important; top: 100%; left: 0; min-width: 220px; background: white; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; z-index: 1000; list-style: none; pointer-events: none; }
+      /* CRITICAL: Desktop hover styles to show dropdown */
+      .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Submenu item styling */
+      .sub-menu li { list-style: none; margin: 0; padding: 0; }
+      .sub-menu a { display: block !important; padding: 10px 16px !important; color: #333 !important; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background-color 0.2s; }
+      .sub-menu a:hover { background-color: #f5f5f5; }
+      /* RTL (Hebrew/Arabic) dropdown positioning */
+      [dir="rtl"] .nav-menu .sub-menu, [dir="rtl"] nav .sub-menu, [dir="rtl"] .navbar .sub-menu, html[lang="he"] .nav-menu .sub-menu, html[lang="he"] nav .sub-menu, html[lang="he"] .navbar .sub-menu, html[lang="ar"] .nav-menu .sub-menu, html[lang="ar"] nav .sub-menu, html[lang="ar"] .navbar .sub-menu { left: auto !important; right: 0 !important; }
+      /* Hide empty dropdown menus */
+      .sub-menu:empty, .sub-menu:not(:has(li:not(.zappy-hidden-menu-item))), .sub-menu:not(:has(li)) { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+      /* Desktop: show submenu on Menu Group hover */
+      li:has(.menu-group-title):hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Menu Group title styling */
+      .nav-menu > li > .menu-group-title, #navMenu > li > .menu-group-title { display: inline-block; padding: 0.5rem 1rem; cursor: default; user-select: none; }
+      
+      /* ========== MOBILE SUBMENU STYLES ========== */
+      @media (max-width: 768px) {
+        .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { position: static !important; transform: none !important; box-shadow: none !important; background: transparent !important; max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; padding: 0 !important; border-radius: 0 !important; }
+        .sub-menu.mobile-expanded { max-height: 500px !important; opacity: 1 !important; visibility: visible !important; padding: 8px 0 8px 16px !important; }
+        [dir="rtl"] .sub-menu.mobile-expanded, html[lang="he"] .sub-menu.mobile-expanded { padding: 8px 16px 8px 0 !important; }
+        /* Disable hover behavior on mobile */
+        .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 0; visibility: hidden; pointer-events: none; }
+        .nav-menu li > .sub-menu.mobile-expanded, nav li > .sub-menu.mobile-expanded, .navbar li > .sub-menu.mobile-expanded, #navMenu li > .sub-menu.mobile-expanded { opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
+        .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { display: flex !important; flex-wrap: wrap !important; align-items: center !important; }
+        .nav-menu li:has(.sub-menu) > a, nav li:has(.sub-menu) > a, .navbar li:has(.sub-menu) > a, #navMenu li:has(.sub-menu) > a { flex: 1 !important; }
+        .nav-menu li:has(.sub-menu) > a [class*="chevron"], .nav-menu li:has(.sub-menu) > a [class*="arrow"], .nav-menu li:has(.sub-menu) > a .fa-chevron-down, .nav-menu li:has(.sub-menu) > a .fa-angle-down, nav li:has(.sub-menu) > a [class*="chevron"], nav li:has(.sub-menu) > a [class*="arrow"], #navMenu li:has(.sub-menu) > a [class*="chevron"], #navMenu li:has(.sub-menu) > a [class*="arrow"] { display: none !important; visibility: hidden !important; }
+        .mobile-submenu-toggle { display: flex !important; align-items: center !important; justify-content: center !important; width: 44px !important; height: 44px !important; background: transparent !important; border: none !important; cursor: pointer !important; }
+        .mobile-submenu-toggle::after { content: '' !important; width: 0 !important; height: 0 !important; border-left: 6px solid transparent !important; border-right: 6px solid transparent !important; border-top: 7px solid currentColor !important; transition: transform 0.3s ease !important; }
+        .mobile-submenu-toggle.expanded::after { transform: rotate(180deg) !important; }
+        .nav-menu li:has(.sub-menu) > .sub-menu, nav li:has(.sub-menu) > .sub-menu { flex-basis: 100% !important; width: 100% !important; }
+        .sub-menu a { padding: 10px 0 !important; display: block !important; }
+        .nav-menu li:has(.sub-menu) > .menu-group-title, nav li:has(.sub-menu) > .menu-group-title, .navbar li:has(.sub-menu) > .menu-group-title, #navMenu li:has(.sub-menu) > .menu-group-title { flex: 1 !important; }
+      }
+      @media (min-width: 769px) { .mobile-submenu-toggle { display: none !important; } }
+    </style>
+</head>
+<body>
+  <nav class="navbar" dir="rtl">
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+    <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display:none;">
+      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+  </button>
+  
+  <button class="phone-header-btn" aria-label="Call">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+    </svg>
+  </button>
+  
+  <div class="nav-container">
+    <div class="nav-brand">
+      <a href="/" class="logo-link">
+        <img src="/assets/business-logo.webp" alt="ירון קוטיק אדריכלים" class="logo" />
+      </a>
+    </div>
+    
+    <ul class="nav-menu" id="navMenu"><li><a href="/projects">פרויקטים</a></li><li><a href="/projects/project-name">Project Detail</a></li></ul>
+    
+    <div class="nav-cta-container">
+      <a href="/contact" class="nav-cta-btn">צור קשר</a>
+    </div>
+  </div>
+</nav>
+  
+  <main>
+    <section class="projects-intro-section" data-layout-spec="Projects-intro">
+  <div class="projects-intro-container">
+    <div class="projects-intro-content">
+      <h1 class="projects-intro-title">פרויקטים</h1>
+      <p class="projects-intro-description">אוסף של חללים שבהם האור, הפרופורציה והחומר מספרים את הסיפור. כל פרויקט משקף גישה ייחודית לתכנון ולעיצוב, עם דגש על יושרה חומרית ותשומת לב לפרטים.</p>
+    </div>
+    
+    <div class="projects-intro-divider"></div>
+    
+    <div class="projects-intro-categories">
+      <span class="projects-intro-chip">מגורים</span>
+      <span class="projects-intro-chip">שיפוצים</span>
+      <span class="projects-intro-chip">מסחרי קטן</span>
+      <span class="projects-intro-chip">תכנון</span>
+    </div>
+  </div>
+</section>
+
+<section class="projects-showcase-section" data-layout-spec="Projects-showcase">
+  <div class="projects-showcase-container">
+    <header class="projects-showcase-header">
+      <h2>פרויקטים נבחרים</h2>
+      <p class="projects-showcase-subtitle">קטלוג מקיף של פרויקטי אדריכלות ועיצוב בישראל – מבתים פרטיים ועד מבני ציבור</p>
+    </header>
+
+    <div class="projects-showcase-grid">
+      <!-- Project Card 1 -->
+      <article class="project-card">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-1" data-context="Modern minimalist residential house exterior in Israel, clean white walls, large glass windows, flat roof, surrounded by Mediterranean landscaping, professional architectural photography" width="600" height="400" src="/assets/site-projects-showcase-image-1.webp" alt="בית פרטי מודרני בעיצוב מינימליסטי">
+        </div>
+        <div class="project-content">
+          <h3>בית משפחת כהן</h3>
+          <p class="project-meta">בית פרטי • 2023</p>
+        </div>
+      </article>
+
+      <!-- Project Card 2 -->
+      <article class="project-card">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-2" data-context="Contemporary office building facade in Tel Aviv, geometric design, glass and concrete materials, urban architecture, blue sky background" width="600" height="400" src="/assets/site-projects-showcase-image-2.webp" alt="בניין משרדים עכשווי בתל אביב">
+        </div>
+        <div class="project-content">
+          <h3>מרכז עסקים רוטשילד</h3>
+          <p class="project-meta">מסחרי • 2022</p>
+        </div>
+      </article>
+
+      <!-- Project Card 3 -->
+      <article class="project-card">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-3" data-context="Elegant apartment interior living room, high ceilings, modern furniture, natural light through large windows, neutral color palette, Israeli design" width="600" height="400" src="/assets/site-projects-showcase-image-3.webp" alt="דירת יוקרה בעיצוב מודרני">
+        </div>
+        <div class="project-content">
+          <h3>פנטהאוז בהרצליה</h3>
+          <p class="project-meta">דירה פרטית • 2023</p>
+        </div>
+      </article>
+
+      <!-- Project Card 4 (with plan thumbnail) -->
+      <article class="project-card project-card-with-plan">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-4" data-context="Modern cultural center building exterior, curved architecture, public space, people walking, contemporary Israeli architecture" width="600" height="400" src="/assets/site-projects-showcase-image-4.webp" alt="מרכז תרבות עכשווי">
+        </div>
+        <div class="project-plan-thumbnail">
+          <img data-placeholder="projects-showcase-plan-1" data-context="Architectural floor plan drawing on white background, clean black lines, minimalist technical drawing, cultural center layout" width="200" height="150" src="/assets/site-projects-showcase-plan-1.webp" alt="תוכנית קומה - מרכז תרבות">
+          <p class="plan-caption">תוכנית קומת קרקע</p>
+        </div>
+        <div class="project-content">
+          <h3>מרכז תרבות ירושלים</h3>
+          <p class="project-meta">ציבורי • 2021</p>
+        </div>
+      </article>
+
+      <!-- Project Card 5 -->
+      <article class="project-card">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-5" data-context="Luxury villa with swimming pool, modern architecture, outdoor terrace, Mediterranean garden, sunset lighting" width="600" height="400" src="/assets/site-projects-showcase-image-5.webp" alt="וילה יוקרתית עם בריכה">
+        </div>
+        <div class="project-content">
+          <h3>וילה בקיסריה</h3>
+          <p class="project-meta">בית פרטי • 2022</p>
+        </div>
+      </article>
+
+      <!-- Project Card 6 -->
+      <article class="project-card">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-6" data-context="Modern restaurant interior design, open kitchen, warm lighting, wooden accents, contemporary Israeli dining space" width="600" height="400" src="/assets/site-projects-showcase-image-6.webp" alt="מסעדה מודרנית בעיצוב עכשווי">
+        </div>
+        <div class="project-content">
+          <h3>מסעדת שף בתל אביב</h3>
+          <p class="project-meta">מסחרי • 2023</p>
+        </div>
+      </article>
+
+      <!-- Project Card 7 -->
+      <article class="project-card">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-7" data-context="Contemporary synagogue architecture, natural stone facade, modern interpretation of traditional design, Jerusalem stone" width="600" height="400" src="/assets/site-projects-showcase-image-7.webp" alt="בית כנסת עכשווי">
+        </div>
+        <div class="project-content">
+          <h3>בית כנסת מודרני</h3>
+          <p class="project-meta">ציבורי • 2021</p>
+        </div>
+      </article>
+
+      <!-- Project Card 8 (with plan thumbnail) -->
+      <article class="project-card project-card-with-plan">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-8" data-context="Modern kindergarten exterior, colorful design elements, child-friendly architecture, outdoor play areas, Israeli educational building" width="600" height="400" src="/assets/site-projects-showcase-image-8.webp" alt="גן ילדים מודרני">
+        </div>
+        <div class="project-plan-thumbnail">
+          <img data-placeholder="projects-showcase-plan-2" data-context="Kindergarten floor plan architectural drawing, white background, black line work, classroom layouts, play areas" width="200" height="150" src="/assets/site-projects-showcase-plan-2.webp" alt="תוכנית קומה - גן ילדים">
+          <p class="plan-caption">תוכנית קומת קרקע</p>
+        </div>
+        <div class="project-content">
+          <h3>גן ילדים בראשון לציון</h3>
+          <p class="project-meta">חינוכי • 2022</p>
+        </div>
+      </article>
+
+      <!-- Project Card 9 -->
+      <article class="project-card">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-9" data-context="Boutique hotel lobby interior, luxury design, marble floors, modern chandelier, elegant furniture, Israeli hospitality" width="600" height="400" src="/assets/site-projects-showcase-image-9.webp" alt="לובי מלון בוטיק">
+        </div>
+        <div class="project-content">
+          <h3>מלון בוטיק בירושלים</h3>
+          <p class="project-meta">אירוח • 2021</p>
+        </div>
+      </article>
+
+      <!-- Project Card 10 -->
+      <article class="project-card">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-10" data-context="Modern townhouse row, contemporary urban housing, balconies, clean lines, residential architecture in Israel" width="600" height="400" src="/assets/site-projects-showcase-image-10.webp" alt="בתי מגורים עירוניים">
+        </div>
+        <div class="project-content">
+          <h3>פרויקט דיור עירוני</h3>
+          <p class="project-meta">מגורים • 2023</p>
+        </div>
+      </article>
+
+      <!-- Project Card 11 -->
+      <article class="project-card">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-11" data-context="Modern medical clinic interior, clean white design, waiting area, professional healthcare environment, natural lighting" width="600" height="400" src="/assets/site-projects-showcase-image-11.webp" alt="מרפאה רפואית מודרנית">
+        </div>
+        <div class="project-content">
+          <h3>מרפאה פרטית בחיפה</h3>
+          <p class="project-meta">רפואי • 2022</p>
+        </div>
+      </article>
+
+      <!-- Project Card 12 (with plan thumbnail) -->
+      <article class="project-card project-card-with-plan">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-12" data-context="Contemporary library building, modern architecture, reading spaces, natural light, public cultural building in Israel" width="600" height="400" src="/assets/site-projects-showcase-image-12.webp" alt="ספרייה ציבורית עכשווית">
+        </div>
+        <div class="project-plan-thumbnail">
+          <img data-placeholder="projects-showcase-plan-3" data-context="Library floor plan architectural drawing, white background, technical black lines, reading areas, book stacks layout" width="200" height="150" src="/assets/site-projects-showcase-plan-3.webp" alt="תוכנית קומה - ספרייה">
+          <p class="plan-caption">תוכנית קומה ראשונה</p>
+        </div>
+        <div class="project-content">
+          <h3>ספריית העיר חולון</h3>
+          <p class="project-meta">ציבורי • 2021</p>
+        </div>
+      </article>
+
+      <!-- Project Card 13 -->
+      <article class="project-card">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-13" data-context="Modern loft apartment interior, industrial design elements, exposed concrete, high ceilings, open space, Tel Aviv style" width="600" height="400" src="/assets/site-projects-showcase-image-13.webp" alt="לופט תעשייתי מעוצב">
+        </div>
+        <div class="project-content">
+          <h3>לופט בפלורנטין</h3>
+          <p class="project-meta">דירה פרטית • 2023</p>
+        </div>
+      </article>
+
+      <!-- Project Card 14 -->
+      <article class="project-card">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-14" data-context="Modern co-working space interior, collaborative workspace, natural wood, plants, contemporary office design Israel" width="600" height="400" src="/assets/site-projects-showcase-image-14.webp" alt="משרד שיתופי מודרני">
+        </div>
+        <div class="project-content">
+          <h3>חלל עבודה משותף</h3>
+          <p class="project-meta">מסחרי • 2022</p>
+        </div>
+      </article>
+
+      <!-- Project Card 15 -->
+      <article class="project-card">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-15" data-context="Contemporary museum gallery space, white walls, art exhibition, modern architecture, natural lighting from skylights" width="600" height="400" src="/assets/site-projects-showcase-image-15.webp" alt="אולם תצוגה במוזיאון">
+        </div>
+        <div class="project-content">
+          <h3>מוזיאון אמנות בתל אביב</h3>
+          <p class="project-meta">תרבות • 2021</p>
+        </div>
+      </article>
+
+      <!-- Project Card 16 (with plan thumbnail) -->
+      <article class="project-card project-card-with-plan">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-16" data-context="Modern sports center exterior, athletic facility, contemporary design, glass facade, Israeli public building" width="600" height="400" src="/assets/site-projects-showcase-image-16.webp" alt="מרכז ספורט מודרני">
+        </div>
+        <div class="project-plan-thumbnail">
+          <img data-placeholder="projects-showcase-plan-4" data-context="Sports center floor plan, architectural drawing on white, black technical lines, gym layouts, swimming pool" width="200" height="150" src="/assets/site-projects-showcase-plan-4.webp" alt="תוכנית קומה - מרכז ספורט">
+          <p class="plan-caption">תוכנית קומת קרקע</p>
+        </div>
+        <div class="project-content">
+          <h3>מרכז ספורט עירוני</h3>
+          <p class="project-meta">ציבורי • 2022</p>
+        </div>
+      </article>
+
+      <!-- Project Card 17 -->
+      <article class="project-card">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-17" data-context="Luxury spa interior design, relaxation area, natural materials, water features, serene atmosphere, Israeli wellness center" width="600" height="400" src="/assets/site-projects-showcase-image-17.webp" alt="ספא יוקרתי">
+        </div>
+        <div class="project-content">
+          <h3>ספא באילת</h3>
+          <p class="project-meta">אירוח • 2023</p>
+        </div>
+      </article>
+
+      <!-- Project Card 18 -->
+      <article class="project-card">
+        <div class="project-image-wrapper">
+          <img data-placeholder="projects-showcase-image-18" data-context="Modern residential complex exterior, apartment buildings, landscaped courtyard, contemporary urban development in Israel" width="600" height="400" src="/assets/site-projects-showcase-image-18.webp" alt="קומפלקס מגורים מודרני">
+        </div>
+        <div class="project-content">
+          <h3>קומפלקס מגורים בהוד השרון</h3>
+          <p class="project-meta">מגורים • 2021</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="projects-case-studies-section" data-layout-spec="Projects-case-studies">
+  <div class="case-studies-container">
+    <!-- Case Study A -->
+    <article class="case-study-block">
+      <div class="case-study-content">
+        <h2>בית פרטי בהרצליה פיתוח</h2>
+        <p>פרויקט אדריכלי מקיף המשלב עיצוב עכשווי עם חומרים טבעיים. התכנון מדגיש קשר חזק בין המרחב הפנימי לגינה, תוך שימוש בקווים נקיים ופתחים גדולים המזמינים אור טבעי לכל פינה בבית.</p>
+        
+        <div class="case-study-data">
+          <div class="data-row">
+            <span class="data-label">היקף:</span>
+            <span class="data-value">תכנון אדריכלי מלא + ליווי ביצוע</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">שטח:</span>
+            <span class="data-value">450 מ״ר</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">לוח זמנים:</span>
+            <span class="data-value">24 חודשים</span>
+          </div>
+        </div>
+        
+        <a href="#" class="case-study-link">צפייה בפרויקט המלא ←</a>
+      </div>
+      
+      <div class="case-study-image">
+        <img data-placeholder="projects-case-studies-image-1" data-context="Modern private house exterior in Herzliya Pituach, Israel - clean architectural lines, large glass windows, natural stone cladding, contemporary design with landscaped garden, daylight photography, professional architecture photography" width="600" height="500" src="/assets/site-projects-case-studies-image-1.webp" alt="בית פרטי מעוצב בהרצליה פיתוח - אדריכלות עכשווית">
+      </div>
+    </article>
+
+    <!-- Divider -->
+    <div class="case-studies-divider" aria-hidden="true">
+      <div class="divider-line"></div>
+      <div class="divider-line"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- Case Study B -->
+    <article class="case-study-block">
+      <div class="case-study-content">
+        <h2>משרדי חברת הייטק בתל אביב</h2>
+        <p>עיצוב חלל עבודה דינמי המשלב אזורי פגישה פתוחים עם חדרי ישיבות אינטימיים. התכנון מדגיש גמישות ופונקציונליות תוך שמירה על אסתטיקה מינימליסטית ותחושת מרחב.</p>
+        
+        <div class="case-study-data">
+          <div class="data-row">
+            <span class="data-label">היקף:</span>
+            <span class="data-value">עיצוב פנים + ייעוץ אדריכלי</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">שטח:</span>
+            <span class="data-value">800 מ״ר</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">לוח זמנים:</span>
+            <span class="data-value">18 חודשים</span>
+          </div>
+        </div>
+        
+        <a href="#" class="case-study-link">צפייה בפרויקט המלא ←</a>
+      </div>
+      
+      <div class="case-study-image">
+        <img data-placeholder="projects-case-studies-image-2" data-context="Modern tech office interior in Tel Aviv - open workspace with meeting rooms, minimalist design, natural light, wooden accents, contemporary furniture, professional interior photography" width="600" height="500" src="/assets/site-projects-case-studies-image-2.webp" alt="משרדי הייטק מעוצבים בתל אביב - עיצוב פנים מודרני">
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="projects-cta-section" data-layout-spec="Projects-cta">
+  <div class="projects-cta-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 2" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="1" x2="60" y2="1" stroke="rgba(17,24,39,0.12)" stroke-width="1"></line>
+      <rect x="60" y="0" width="4" height="2" fill="rgba(17,24,39,0.12)"></rect>
+      <line x1="64" y1="1" x2="1200" y2="1" stroke="rgba(17,24,39,0.12)" stroke-width="1"></line>
+    </svg>
+  </div>
+  <div class="projects-cta-container">
+    <h2 class="projects-cta-heading">רוצים הכוונה לפרויקט שלכם?</h2>
+    <p class="projects-cta-text">שלחו לנו הודעה קצרה עם המטרות והאילוצים שלכם, ונחזור אליכם עם הצעה מותאמת אישית. אנחנו כאן כדי להפוך את החזון שלכם למציאות אדריכלית.</p>
+    <a href="/contact" class="projects-cta-button btn-primary">צור קשר</a>
+  </div>
+</section>
+  </main>
+  
+  <footer class="site-footer"><div class="footer-container"><div class="footer-grid"><div class="footer-column footer-about"><img src="/assets/business-logo.webp" alt="ירון קוטיק אדריכלים" class="logo" /><p class="footer-description">משרד אדריכלות ועיצוב המתמחה בפרויקטים מגוונים עם דגש על חדשנות ואיכות.</p></div><div class="footer-column footer-links"><h3 class="footer-title">קישורים מהירים</h3><nav class="footer-nav"><a href="/projects">פרויקטים</a><a href="/projects/project-name">פרויקט לדוגמה</a><a href="/contact">צור קשר</a></nav></div><div class="footer-column footer-contact"><h3 class="footer-title">צור קשר</h3><div class="contact-info"><div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:[business_email]">[business_email]</a></div><div class="contact-item"><i class="fas fa-phone"></i><a href="tel:[business_phone]">[business_phone]</a></div><div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>[business_address]</span></div></div></div><div class="footer-column footer-social"><h3 class="footer-title">עקבו אחרינו</h3><div class="social-links"><a href="[facebook_handle]" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a><a href="[instagram_handle]" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a><a href="[whatsapp_handle]" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a></div></div></div><div class="footer-bottom"><div class="footer-legal"><a href="/privacy">מדיניות פרטיות</a><span class="separator">|</span><a href="/terms">תנאי שימוש</a><span class="separator">|</span><a href="/accessibility">הצהרת נגישות</a></div><div class="footer-copyright"><p>© 2026 ירון קוטיק אדריכלים. כל הזכויות שמורות.</p></div><div class="footer-attribution"><a href="https://zappy5.com" target="_blank" class="zappy-attribution">Generated by Zappy</a></div></div></div></footer>
+  
+  <a href="https://wa.me/[whatsapp_handle]" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  
+  <script src="/script.js"></script>
+
+    <div data-integration="accessibility:toolbar"></div>
+
+    <script id="zappy-mobile-submenu-script">
+    (function() {
+      function initMobileSubmenuToggles() {
+        if (window.innerWidth > 768) {
+          document.querySelectorAll('.mobile-submenu-toggle').forEach(function(btn) { btn.remove(); });
+          document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) { menu.classList.remove('mobile-expanded'); });
+          return;
+        }
+        var items = document.querySelectorAll('.nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu)');
+        items.forEach(function(li) {
+          if (li.querySelector('.mobile-submenu-toggle')) return;
+          var submenu = li.querySelector('.sub-menu');
+          var parentLink = li.querySelector(':scope > a');
+          if (!submenu || !parentLink) return;
+          var toggleBtn = document.createElement('button');
+          toggleBtn.className = 'mobile-submenu-toggle';
+          toggleBtn.setAttribute('aria-label', 'Toggle submenu');
+          toggleBtn.setAttribute('type', 'button');
+          parentLink.insertAdjacentElement('afterend', toggleBtn);
+          toggleBtn.addEventListener('click', function(e) {
+            e.preventDefault(); e.stopPropagation();
+            document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) {
+              if (menu !== submenu) { menu.classList.remove('mobile-expanded'); var t = menu.parentElement.querySelector('.mobile-submenu-toggle'); if(t) t.classList.remove('expanded'); }
+            });
+            submenu.classList.toggle('mobile-expanded');
+            toggleBtn.classList.toggle('expanded');
+          });
+        });
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initMobileSubmenuToggles); }
+      else { initMobileSubmenuToggles(); }
+      var resizeTimer; window.addEventListener('resize', function() { clearTimeout(resizeTimer); resizeTimer = setTimeout(initMobileSubmenuToggles, 250); });
+      // Re-initialize when mobile menu becomes visible (MutationObserver)
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes') {
+            var target = mutation.target;
+            if (target.classList && (target.classList.contains('active') || target.classList.contains('open'))) {
+              setTimeout(initMobileSubmenuToggles, 100);
+            }
+          }
+        });
+      });
+      setTimeout(function() {
+        document.querySelectorAll('.mobile-menu, .nav-menu, #navMenu, nav').forEach(function(menu) {
+          observer.observe(menu, { attributes: true, attributeFilter: ['class', 'style'] });
+        });
+      }, 500);
+    })();
+    </script>
+</body></html>
