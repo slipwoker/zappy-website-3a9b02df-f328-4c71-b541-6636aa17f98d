@@ -1,43 +1,55 @@
-# Business — Generative Engine Optimization Map
+# ירון קוטיק אדריכלים — Generative Engine Optimization Map
+
+> A אדריכלות ועיצוב business.
 
 ---
 
 ## Pages
 
 ### Home
-https://example.com
+https://yaron-kotik-architects.zappy5.app
 
 ### Projects
-https://example.com/projects
+https://yaron-kotik-architects.zappy5.app/projects
 
 ### Project Detail
-https://example.com/projects/project-name
+https://yaron-kotik-architects.zappy5.app/projects/project-name
 
 ### Contact
-https://example.com/contact
+https://yaron-kotik-architects.zappy5.app/contact
 
 ## Legal & Policy
 
 ### Privacy Policy
-https://example.com/privacy
+https://yaron-kotik-architects.zappy5.app/privacy
 Information about how user data is collected, stored, and protected.
 
 ### Terms & Conditions
-https://example.com/terms
+https://yaron-kotik-architects.zappy5.app/terms
 Legal terms describing service usage, rights, and policies.
 
 ### Accessibility Statement
-https://example.com/accessibility
+https://yaron-kotik-architects.zappy5.app/accessibility
 Information about WCAG compliance and accessibility features.
 
 ---
 
 # Business Context (for LLM understanding)
 
-## About Business
+## About ירון קוטיק אדריכלים
+ירון קוטיק אדריכלים is a business in the אדריכלות ועיצוב industry.
+
+## Target Audience
+- בעלי הון גבוה
+- לקוחות עסקיים
+- שותפים לעיצוב פנים
+
+## Industry
+אדריכלות ועיצוב
+
 ---
 
 # Additional Resources
 
-- **Sitemap**: https://example.com/sitemap.xml
-- **Robots.txt**: https://example.com/robots.txt
+- **Sitemap**: https://yaron-kotik-architects.zappy5.app/sitemap.xml
+- **Robots.txt**: https://yaron-kotik-architects.zappy5.app/robots.txt
