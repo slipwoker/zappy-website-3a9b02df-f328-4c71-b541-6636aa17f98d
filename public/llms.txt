@@ -1,4 +1,6 @@
-# Business — Generative Engine Optimization Map
+# ירון קוטיק אדריכלים — Generative Engine Optimization Map
+
+> A אדריכלות ועיצוב business.
 
 ---
 
@@ -34,7 +36,17 @@ Information about WCAG compliance and accessibility features.
 
 # Business Context (for LLM understanding)
 
-## About Business
+## About ירון קוטיק אדריכלים
+ירון קוטיק אדריכלים is a business in the אדריכלות ועיצוב industry.
+
+## Target Audience
+- בעלי הון גבוה
+- לקוחות עסקיים
+- שותפים לעיצוב פנים
+
+## Industry
+אדריכלות ועיצוב
+
 ---
 
 # Additional Resources
